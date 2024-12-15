@@ -30,10 +30,16 @@ export class AddTransactionFormComponent {
   }
 
   deposit() {
-
+    if(this.transactionForm.valid) {
+      this.accountStatementService.deposit(this.transactionForm.value.amount);
+      this.transactionForm.reset();
+    }
   }
 
   withdraw() {
-
+    if(this.transactionForm.valid) {
+      this.accountStatementService.withdraw(this.transactionForm.value.amount);
+      this.transactionForm.reset();
+    }
   }
 }
