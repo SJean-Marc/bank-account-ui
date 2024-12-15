@@ -3,13 +3,14 @@ import {AccountStatement} from '../../model/account-statement';
 import {Observable} from 'rxjs';
 import {AccountStatementService} from '../../service/account-statement.service';
 import {MatTableModule} from '@angular/material/table';
-import {DatePipe} from '@angular/common';
+import {CurrencyPipe, DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-account-statement-list',
   imports: [
     MatTableModule,
-    DatePipe
+    DatePipe,
+    CurrencyPipe
   ],
   templateUrl: './account-statement-list.component.html',
   standalone: true,
