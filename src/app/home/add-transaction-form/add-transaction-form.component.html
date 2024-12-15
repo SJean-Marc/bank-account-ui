@@ -13,5 +13,9 @@
   <br/>
   <button mat-raised-button (click)="deposit()">Deposit</button>
   <button mat-raised-button (click)="withdraw()">Withdraw</button>
+
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
 </form>
 

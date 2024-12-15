@@ -14,11 +14,11 @@ export class AccountStatementService {
     return this.accountStatementClient.loadAll();
   }
 
-  deposit(amount :  number) {
-
+  deposit(amount :  number) : Observable<any> {
+    return this.accountStatementClient.deposit(amount);
   }
 
-  withdraw(amount : number) {
-
+  withdraw(amount : number) : Observable<any> {
+    return this.accountStatementClient.withdraw(amount);
   }
 }

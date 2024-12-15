@@ -1,4 +1,6 @@
-<table mat-table [dataSource]="accountStatements$">
+<app-add-transaction-form (transactionCompleted)="onTransactionCompleted()"/>
+
+<table mat-table [dataSource]="accountStatements">
   <ng-container matColumnDef="date">
     <th mat-header-cell *matHeaderCellDef> Date </th>
     <td mat-cell *matCellDef="let element"> {{element.date | date}} </td>

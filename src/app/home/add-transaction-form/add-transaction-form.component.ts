@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {AccountStatementService} from '../../service/account-statement.service';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -20,7 +20,10 @@ import {MatButton} from '@angular/material/button';
   styleUrl: './add-transaction-form.component.css'
 })
 export class AddTransactionFormComponent {
+  @Output() transactionCompleted = new EventEmitter<void>();
   transactionForm: FormGroup;
+  errorMessage: string | null = null;
+
 
   constructor(private formBuilder: FormBuilder,
               private accountStatementService: AccountStatementService) {
@@ -30,15 +33,32 @@ export class AddTransactionFormComponent {
   }
 
   deposit() {
-    if(this.transactionForm.valid) {
-      this.accountStatementService.deposit(this.transactionForm.value.amount);
+    if (this.transactionForm.valid) {
+      this.accountStatementService.deposit(this.transactionForm.value.amount)
+        .subscribe({
+          next: () => {
+            this.errorMessage = null;
+            this.transactionCompleted.emit();
+          },
+          error: (error) => {
+            this.errorMessage = error.message;
+          }
+        });
       this.transactionForm.reset();
     }
   }
 
   withdraw() {
-    if(this.transactionForm.valid) {
-      this.accountStatementService.withdraw(this.transactionForm.value.amount);
+    if (this.transactionForm.valid) {
+      this.accountStatementService.withdraw(this.transactionForm.value.amount).subscribe({
+        next: () => {
+          this.errorMessage = null;
+          this.transactionCompleted.emit();
+        },
+        error: (error) => {
+          this.errorMessage = error.message;
+        }
+      });
       this.transactionForm.reset();
     }
   }
