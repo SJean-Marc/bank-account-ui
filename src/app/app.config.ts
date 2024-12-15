@@ -16,6 +16,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     {provide: LOCALE_ID, useValue: 'fr-FR'},
     provideAnimationsAsync(),
-    provideHttpClient()
+    provideHttpClient(),
     importProvidersFrom(BrowserAnimationsModule, BrowserModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule)]
 };

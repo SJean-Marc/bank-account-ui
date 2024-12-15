@@ -37,4 +37,8 @@ export class AccountStatementClientService {
         )
       )
   }
+
+  deposit(moneyToDeposit) {
+    this.http.post('/deposit', { amount: this.transactionForm.value.amount }).
+  }
 }
