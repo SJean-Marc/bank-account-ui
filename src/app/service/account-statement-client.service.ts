@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
-import {map} from 'rxjs';
+import {catchError, map, Observable, throwError} from 'rxjs';
 import {AccountStatement} from '../model/account-statement';
 
 export class AccountStatementResponse {
@@ -36,5 +36,23 @@ export class AccountStatementClientService {
           }
         )
       )
+  }
+
+  deposit(moneyToDeposit: number) : Observable<any> {
+    return this.http.post(`${environment.apiUrl}/deposit`, {amount: moneyToDeposit})
+      .pipe(
+        catchError(error => {
+          return throwError(() => new Error('Deposit failed: ' + error.error));
+        })
+      );
+  }
+
+  withdraw(moneyToWithdraw: number) : Observable<any> {
+    return this.http.post(`${environment.apiUrl}/withdraw`, {amount: moneyToWithdraw})
+      .pipe(
+        catchError(error => {
+          return throwError(() => new Error('Withdraw failed: ' + error.error));
+        })
+      );
   }
 }

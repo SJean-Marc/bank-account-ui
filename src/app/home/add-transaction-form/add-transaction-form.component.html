@@ -1,0 +1,21 @@
+<form [formGroup]="transactionForm">
+  <mat-form-field>
+    <mat-label>Amount</mat-label>
+    <input matInput formControlName="amount" type="text">
+    <mat-error *ngIf="transactionForm.get('amount')?.hasError('required')">
+      Amount is required
+    </mat-error>
+    <mat-error *ngIf="transactionForm.get('amount')?.hasError('pattern')">
+      Enter a valid amount
+    </mat-error>
+  </mat-form-field>
+
+  <br/>
+  <button mat-raised-button (click)="deposit()">Deposit</button>
+  <button mat-raised-button (click)="withdraw()">Withdraw</button>
+
+  <mat-error *ngIf="errorMessage">
+    {{ errorMessage }}
+  </mat-error>
+</form>
+

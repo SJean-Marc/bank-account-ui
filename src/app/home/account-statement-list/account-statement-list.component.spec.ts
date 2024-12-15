@@ -4,6 +4,14 @@ import {AccountStatementListComponent} from './account-statement-list.component'
 import {AccountStatementService} from '../../service/account-statement.service';
 import {of} from 'rxjs';
 import {AccountStatement} from '../../model/account-statement';
+import {provideHttpClient} from '@angular/common/http';
+import {importProvidersFrom} from '@angular/core';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {BrowserModule} from '@angular/platform-browser';
+import {ReactiveFormsModule} from '@angular/forms';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
 
 describe('AccountStatementListComponent', () => {
   let accountStatementService: AccountStatementService;
@@ -15,7 +23,9 @@ describe('AccountStatementListComponent', () => {
 
     await TestBed.configureTestingModule({
       imports: [AccountStatementListComponent],
-      providers: [{provide: AccountStatementService, useValue: spyAccountStatementGetAll}]
+      providers: [{provide: AccountStatementService, useValue: spyAccountStatementGetAll},
+        provideHttpClient(), importProvidersFrom(BrowserAnimationsModule, BrowserModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule)]
+
     })
       .compileComponents();
 

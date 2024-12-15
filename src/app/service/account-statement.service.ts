@@ -13,4 +13,12 @@ export class AccountStatementService {
   loadAll() : Observable<AccountStatement[]> {
     return this.accountStatementClient.loadAll();
   }
+
+  deposit(amount :  number) : Observable<any> {
+    return this.accountStatementClient.deposit(amount);
+  }
+
+  withdraw(amount : number) : Observable<any> {
+    return this.accountStatementClient.withdraw(amount);
+  }
 }
