@@ -42,7 +42,7 @@ export class AccountStatementClientService {
     return this.http.post(`${environment.apiUrl}/deposit`, {amount: moneyToDeposit})
       .pipe(
         catchError(error => {
-          return throwError(() => new Error('Deposit failed: ' + error.message));
+          return throwError(() => new Error('Deposit failed: ' + error.error));
         })
       );
   }
@@ -51,7 +51,7 @@ export class AccountStatementClientService {
     return this.http.post(`${environment.apiUrl}/withdraw`, {amount: moneyToWithdraw})
       .pipe(
         catchError(error => {
-          return throwError(() => new Error('Withdraw failed: ' + error.message));
+          return throwError(() => new Error('Withdraw failed: ' + error.error));
         })
       );
   }
