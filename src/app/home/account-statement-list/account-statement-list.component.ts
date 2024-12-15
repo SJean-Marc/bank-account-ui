@@ -23,6 +23,6 @@ export class AccountStatementListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.accountStatements$ = this.accountStatementService.getAll();
+    this.accountStatements$ = this.accountStatementService.loadAll();
   }
 }

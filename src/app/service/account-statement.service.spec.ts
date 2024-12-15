@@ -16,7 +16,7 @@ describe('AccountStatementService', () => {
   });
 
   it('it should return account statement', () => {
-    service.getAll().subscribe(accountStatements => {
+    service.loadAll().subscribe(accountStatements => {
       expect(accountStatements).toEqual([new AccountStatement(new Date(2010, 1, 1), 10, 100)]);
     })
   })

@@ -1,15 +1,16 @@
-import { Injectable } from '@angular/core';
-import {Observable, of} from 'rxjs';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
 import {AccountStatement} from '../model/account-statement';
+import {AccountStatementClientService} from './account-statement-client.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountStatementService {
 
-  constructor() { }
+  constructor(private accountStatementClient : AccountStatementClientService) { }
 
-  getAll() : Observable<AccountStatement[]> {
-    return of([new AccountStatement(new Date(2010, 1, 1), 10, 100)]);
+  loadAll() : Observable<AccountStatement[]> {
+    return this.accountStatementClient.loadAll();
   }
 }

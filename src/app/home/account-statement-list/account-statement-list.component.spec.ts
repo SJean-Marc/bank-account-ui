@@ -21,7 +21,7 @@ describe('AccountStatementListComponent', () => {
 
     accountStatementService = TestBed.inject(AccountStatementService);
 
-    (accountStatementService.getAll as jasmine.Spy).and.returnValue(of([
+    (accountStatementService.loadAll as jasmine.Spy).and.returnValue(of([
       {date: new Date(2020, 10, 1), amount: 10, balance: 10},
       {date: new Date(2021, 10, 1), amount: 20, balance: 30}
     ]));
