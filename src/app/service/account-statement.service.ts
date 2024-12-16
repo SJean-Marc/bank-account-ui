@@ -8,17 +8,18 @@ import {AccountStatementClientService} from './account-statement-client.service'
 })
 export class AccountStatementService {
 
-  constructor(private accountStatementClient : AccountStatementClientService) { }
+  constructor(private accountStatementClient: AccountStatementClientService) {
+  }
 
-  loadAll() : Observable<AccountStatement[]> {
+  loadAll(): Observable<AccountStatement[]> {
     return this.accountStatementClient.loadAll();
   }
 
-  deposit(amount :  number) : Observable<any> {
+  deposit(amount: number): Observable<any> {
     return this.accountStatementClient.deposit(amount);
   }
 
-  withdraw(amount : number) : Observable<any> {
+  withdraw(amount: number): Observable<any> {
     return this.accountStatementClient.withdraw(amount);
   }
 }

@@ -19,13 +19,12 @@ describe('AccountStatementListComponent', () => {
   let fixture: ComponentFixture<AccountStatementListComponent>;
 
   beforeEach(async () => {
-    const spyAccountStatementGetAll = jasmine.createSpyObj('AccountStatementService', ['getAll']);
+    const spyAccountStatementGetAll = jasmine.createSpyObj('AccountStatementService', ['loadAll']);
 
     await TestBed.configureTestingModule({
       imports: [AccountStatementListComponent],
       providers: [{provide: AccountStatementService, useValue: spyAccountStatementGetAll},
         provideHttpClient(), importProvidersFrom(BrowserAnimationsModule, BrowserModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule)]
-
     })
       .compileComponents();
 
@@ -46,9 +45,10 @@ describe('AccountStatementListComponent', () => {
   });
 
   it('should print table when has values', () => {
-    expect(component.accountStatements$).toBeDefined();
-    component.accountStatements$.subscribe((accountStatements: AccountStatement[]) => {
-      expect(accountStatements).toContain({date: new Date(2020, 10, 1), amount: 10, balance: 10});
-    })
-  })
+    expect(component.accountStatements).toBeDefined();
+    expect(component.accountStatements).toEqual([
+      {date: new Date(2020, 10, 1), amount: 10, balance: 10},
+      {date: new Date(2021, 10, 1), amount: 20, balance: 30}
+    ]);
+  });
 });
